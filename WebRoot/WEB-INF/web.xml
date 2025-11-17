@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+  <servlet>
+    <servlet-name>Login</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>Login</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CooperationForumServlet_enterprise</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>org.web.servlet.enterprise.CooperationForumServlet_enterprise</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CooperationForumServlet_executive</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>org.web.servlet.hospital.executive.CooperationForumServlet_executive</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CooperationForumServlet_unniversity</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>org.web.servlet.unniversity.CooperationForumServlet_unniversity</servlet-class>
+  </servlet>
+
+
+
+  
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/servlet/Login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CooperationForumServlet_enterprise</servlet-name>
+    <url-pattern>/servlet/CooperationForumServlet_enterprise</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CooperationForumServlet_executive</servlet-name>
+    <url-pattern>/servlet/CooperationForumServlet_executive</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CooperationForumServlet_unniversity</servlet-name>
+    <url-pattern>/servlet/CooperationForumServlet_unniversity</url-pattern>
+  </servlet-mapping>
+
+</web-app>

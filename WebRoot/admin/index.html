@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧医疗云 - 论坛管理（管理员）</title>
+    <link rel="stylesheet" href="../CSS/executive.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>论坛管理</h2>
+                <p>管理员视角</p>
+            </div>
+            <nav class="nav-list">
+                <li class="nav-item active" data-target="pending-review">
+                    <span>待审核内容</span>
+                </li>
+                <li class="nav-item" data-target="reviewed-log">
+                    <span>审核日志</span>
+                </li>
+                <li class="nav-item" data-target="all-posts">
+                    <span>所有帖子</span>
+                </li>
+                <li class="nav-item" data-target="user-management">
+                    <span>用户管理</span>
+                </li>
+                <li class="nav-item" data-target="system-stats">
+                    <span>系统统计</span>
+                </li>
+                <li class="nav-item logout">
+                    <span>退出登录</span>
+                </li>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="user-info">
+                    <span>欢迎，管理员</span>
+                    <img src="../images/admin-avatar.png" alt="管理员头像" class="avatar">
+                </div>
+            </header>
+
+            <!-- 待审核内容 -->
+            <section id="pending-review" class="content-section active">
+                <div class="section-header">
+                    <h1>待审核内容</h1>
+                    <span class="pending-count">待审核：5</span>
+                </div>
+                <div id="pending-list" class="posts-container">
+                    <!-- 待审核帖子（JS动态生成） -->
+                </div>
+            </section>
+
+            <!-- 审核日志 -->
+            <section id="reviewed-log" class="content-section">
+                <div class="section-header">
+                    <h1>审核日志</h1>
+                </div>
+                <div class="log-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>内容标题</th>
+                                <th>发布者</th>
+                                <th>审核结果</th>
+                                <th>审核时间</th>
+                                <th>操作人</th>
+                            </tr>
+                        </thead>
+                        <tbody id="review-log-body">
+                            <!-- 日志内容（JS动态生成） -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 其他内容区：所有帖子/用户管理/系统统计 -->
+            <section id="all-posts" class="content-section">...</section>
+            <section id="user-management" class="content-section">...</section>
+            <section id="system-stats" class="content-section">...</section>
+        </main>
+    </div>
+
+    <script src="../scripts/admin.js"></script>
+</body>
+</html>

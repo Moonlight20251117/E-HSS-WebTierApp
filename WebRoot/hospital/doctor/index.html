@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>智慧医疗云系统 - 医生端</title>
+    <meta charset="UTF-8"> 
+    <link rel="stylesheet" type="text/css" href="../../CSS/mysitecss.css">
+    <link rel="stylesheet" type="text/css" href="../../CSS/doctor.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">智慧医疗云系统 - 医生端</div>
+        <div class="user-info">
+            <span>欢迎，医生用户</span>
+            <a href="../../Login.html">退出登录</a>
+        </div>
+    </div>
+    
+    <div class="horizontal-nav">
+        <ul>
+            <li><a href="#medical-service" class="active" data-nav="medical-service">医务管理</a></li>
+            <li><a href="#electronic-record" data-nav="electronic-record">电子病历</a></li>
+            <li><a href="#remote-services" data-nav="remote-services">远程医疗</a></li>
+            <li><a href="#disease-management" data-nav="disease-management">疾病管理</a></li>
+        </ul>
+    </div>
+    
+    <div class="business-container">
+        <!-- 医务管理侧边栏 -->
+        <div class="business-sidebar" id="medical-service-sidebar">
+            <div class="nav-title">医务服务</div>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#daily-work" class="active" data-content="daily-work">日常工作安排</a></li>
+                <li class="nav-item"><a href="#patient-care" data-content="patient-care">患者护理安排</a></li>
+                <li class="nav-item"><a href="#schedule" data-content="schedule">出诊安排</a></li>
+                <li class="nav-item"><a href="#statistics" data-content="statistics">工作统计</a></li>
+            </ul>
+        </div>
+        
+        <!-- 电子病历侧边栏 -->
+        <div class="business-sidebar" id="electronic-record-sidebar" style="display: none;">
+            <div class="nav-title">病历管理</div>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#view-records" class="active" data-content="view-records">查看病历</a></li>
+                <li class="nav-item"><a href="#add-record" data-content="add-record">添加病历</a></li>
+                <li class="nav-item"><a href="#edit-record" data-content="edit-record">编辑病历</a></li>
+                <li class="nav-item"><a href="#record-settings" data-content="record-settings">病历设置</a></li>
+            </ul>
+        </div>
+        
+        <!-- 远程医疗侧边栏 -->
+        <div class="business-sidebar" id="remote-services-sidebar" style="display: none;">
+            <div class="nav-title">远程服务</div>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#remote-diagnosis" class="active" data-content="remote-diagnosis">远程诊断</a></li>
+                <li class="nav-item"><a href="#remote-consultation" data-content="remote-consultation">远程干预</a></li>
+                <li class="nav-item"><a href="#medical-advice" data-content="medical-advice">医疗咨询</a></li>
+                <li class="nav-item"><a href="#remote-history" data-content="remote-history">服务历史</a></li>
+            </ul>
+        </div>
+        
+        <!-- 疾病管理侧边栏 -->
+        <div class="business-sidebar" id="disease-management-sidebar" style="display: none;">
+            <div class="nav-title">疾病管理</div>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#epidemic-monitor" class="active" data-content="epidemic-monitor">疫情监控</a></li>
+                <li class="nav-item"><a href="#disease-report" data-content="disease-report">疾病上报</a></li>
+                <li class="nav-item"><a href="#statistics-analysis" data-content="statistics-analysis">统计分析</a></li>
+                <li class="nav-item"><a href="#prevention-guide" data-content="prevention-guide">预防指南</a></li>
+            </ul>
+        </div>
+        
+        <!-- 右侧业务内容区域 -->
+        <div class="business-content">
+            <div id="daily-work" class="business-content-item active">
+                <h2>日常工作安排</h2>
+                <p>管理您的日常医务工作和患者护理安排</p>
+                <a href="../../servlet/hospital/doctor/MedicalServiceServlet_Doctor" class="btn">进入工作区</a>
+            </div>
+            
+            <div id="patient-care" class="business-content-item" style="display: none;">
+                <h2>患者护理安排</h2>
+                <p>查看和管理患者的护理计划和执行情况</p>
+            </div>
+            
+            <div id="view-records" class="business-content-item" style="display: none;">
+                <h2>查看病历</h2>
+                <p>查看和管理患者的电子病历记录</p>
+                <a href="../../servlet/hospital/doctor/ElectronicRecordManageServlet" class="btn">管理病历</a>
+            </div>
+            
+            <div id="remote-diagnosis" class="business-content-item" style="display: none;">
+                <h2>远程诊断</h2>
+                <p>为患者提供远程诊断服务</p>
+                <a href="../../servlet/hospital/doctor/RemoteDiagnosisServlet" class="btn">处理诊断请求</a>
+            </div>
+            
+            <div id="epidemic-monitor" class="business-content-item" style="display: none;">
+                <h2>疫情监控</h2>
+                <p>查看和上报疾病疫情信息</p>
+                <a href="../../servlet/hospital/doctor/DiseaseManagementServlet" class="btn">进入管理</a>
+            </div>
+            
+            
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>智慧医疗云系统 &copy; 2023 版权所有</p>
+    </div>
+
+    <script type="text/javascript" src="../../scripts/common.js"></script>
+</body>
+</html>

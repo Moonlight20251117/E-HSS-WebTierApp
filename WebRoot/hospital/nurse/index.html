@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>智慧医疗云系统 - 护士端</title>
+    <meta charset="UTF-8"> 
+    <link rel="stylesheet" type="text/css" href="../../CSS/mysitecss.css">
+    <link rel="stylesheet" type="text/css" href="../../CSS/nurse.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">智慧医疗云系统 - 护士端</div>
+        <div class="user-info">
+            <span>欢迎，护士用户</span>
+            <a href="../../Login.html">退出登录</a>
+        </div>
+    </div>
+    
+    <div class="horizontal-nav">
+        <ul>
+            <li><a href="#nursing-service" class="active" data-nav="nursing-service">护务管理</a></li>
+            <li><a href="#electronic-record" data-nav="electronic-record">电子病历</a></li>
+            <li><a href="#disease-management" data-nav="disease-management">疾病管理</a></li>
+        </ul>
+    </div>
+    
+    <div class="business-container">
+        <!-- 护务管理侧边栏 -->
+        <div class="business-sidebar" id="nursing-service-sidebar">
+            <div class="nav-title">护务服务</div>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#daily-nursing" class="active" data-content="daily-nursing">日常护理工作</a></li>
+                <li class="nav-item"><a href="#patient-arrangement" data-content="patient-arrangement">患者护理安排</a></li>
+                <li class="nav-item"><a href="#nursing-schedule" data-content="nursing-schedule">排班表</a></li>
+                <li class="nav-item"><a href="#nursing-stats" data-content="nursing-stats">工作统计</a></li>
+            </ul>
+        </div>
+        
+        <!-- 电子病历侧边栏 -->
+        <div class="business-sidebar" id="electronic-record-sidebar" style="display: none;">
+            <div class="nav-title">病历辅助管理</div>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#view-records" class="active" data-content="view-records">查看病历</a></li>
+                <li class="nav-item"><a href="#record-assist" data-content="record-assist">协助记录</a></li>
+                <li class="nav-item"><a href="#record-query" data-content="record-query">病历查询</a></li>
+            </ul>
+        </div>
+        
+        <!-- 疾病管理侧边栏 -->
+        <div class="business-sidebar" id="disease-management-sidebar" style="display: none;">
+            <div class="nav-title">疾病疫情管理</div>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#epidemic-info" class="active" data-content="epidemic-info">疫情信息</a></li>
+                <li class="nav-item"><a href="#data-collection" data-content="data-collection">数据收集</a></li>
+                <li class="nav-item"><a href="#reporting" data-content="reporting">信息上报</a></li>
+            </ul>
+        </div>
+        
+        <!-- 右侧业务内容区域 -->
+        <div class="business-content">
+            <div id="daily-nursing" class="business-content-item active">
+                <h2>日常护理工作</h2>
+                <p>管理日常护理工作和患者护理安排</p>
+                <a href="../../servlet/hospital/nurse/MedicalServiceServlet_Nurse" class="btn">进入工作区</a>
+            </div>
+            
+            <div id="view-records" class="business-content-item" style="display: none;">
+                <h2>查看病历</h2>
+                <p>协助医生管理患者的电子病历记录</p>
+                <a href="../../servlet/hospital/nurse/ElectronicRecordServlet_Auxiliary" class="btn">查看病历</a>
+            </div>
+            
+            <div id="epidemic-info" class="business-content-item" style="display: none;">
+                <h2>疫情信息管理</h2>
+                <p>协助收集和上报疾病疫情信息</p>
+                <a href="../../servlet/hospital/nurse/DiseaseManagementServlet" class="btn">进入管理</a>
+            </div>
+
+
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>智慧医疗云系统 &copy; 2023 版权所有</p>
+    </div>
+
+    <script type="text/javascript" src="../../scripts/common.js"></script>
+</body>
+</html>
