@@ -1,164 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>智慧医疗云系统</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="CSS/mysitecss.css">
-    <style>
-        .portal-container {
-            position: relative;
-            height: 100vh;
-            background-image: url('images/bg.jpg');
-            background-size: cover;
-            background-position: center;
-            overflow: hidden;
-        }
-        
-        .portal-header {
-            position: relative;
-            padding: 20px;
-            color: white;
-            display: flex;
-            align-items: center;
-            z-index: 3; /* 高于蒙版 */
-        }
-        
-        .portal-logo {
-            font-size: 24px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-        }
-        
-        /* 圆形logo样式调整 */
-        .portal-logo img {
-            width: 60px; /* 宽高相等，确保圆形不变形 */
-            height: 60px;
-            margin-right: 15px;
-            border-radius: 50%; /* 核心：裁剪为圆形 */
-            object-fit: cover; /* 保持图片比例，避免拉伸变形 */
-            border: 2px solid rgba(255, 255, 255, 0.8); /* 白色边框增强轮廓 */
-        }
-        
-        .portal-content {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: calc(100% - 100px);
-            gap: 30px;
-            flex-wrap: wrap;
-            padding: 0 50px;
-        }
-        
-        .portal-card {
-            border-radius: 12px;
-            width: 280px;
-            padding: 35px 25px;
-            text-align: center;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .portal-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-        }
-        
-        .portal-card.patient {
-            background-color: rgba(121, 215, 190, 0.9);
-            color: white;
-            margin-top: -20px;
-        }
-        
-        .portal-card.employee {
-            background-color: rgba(77, 161, 169, 0.9);
-            color: white;
-            margin-bottom: -20px;
-        }
-        
-        .portal-card.academic {
-            background-color: rgba(46, 80, 119, 0.9);
-            color: white; 
-        }
-        
-        .portal-icon {
-            margin-bottom: 30px;
-        }
-        
-        .portal-icon img {
-            width: 120px;
-            height: 120px;
-        }
-        
-        .portal-title {
-            font-size: 22px;
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
-        
-        .portal-btn {
-            background-color: rgba(255, 255, 255, 0.9);
-            color: #333;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-        }
-        
-        .portal-btn:hover {
-            background-color: white;
-            transform: scale(1.05);
-        }
-        
-        .portal-card.patient .portal-btn {
-            color: #79D7BE;
-        }
-        .portal-card.employee .portal-btn {
-            color: #4DA1A9;
-        }
-        .portal-card.academic .portal-btn {
-            color: #2E5077; 
-        }
-    </style>
+    <meta http-equiv="refresh" content="0;url=portal/index.html">
+    <title>智慧医疗云系统</title>
+    <script>
+        // 如果meta refresh不工作，使用JavaScript重定向
+        window.location.href = 'portal/index.html';
+    </script>
 </head>
 <body>
-    <div class="portal-container">
-        <div class="portal-header">
-            <div class="portal-logo">
-                <img src="images/logo.jpg" alt="智慧医疗云">
-            </div>
-        </div>
-        
-        <div class="portal-content">
-            <div class="portal-card patient">
-                <div class="portal-title">患者版</div>
-                <div class="portal-icon">
-                    <img src="images/患者端图标.png" alt="患者端">
-                </div>
-                <button class="portal-btn" onclick="window.location.href='patient-login.html'">点击进入</button>
-            </div>
-            
-            <div class="portal-card employee">
-                <div class="portal-title">员工版</div>
-                <div class="portal-icon">
-                    <img src="images/员工端图标.png" alt="员工端">
-                </div>
-                <button class="portal-btn" onclick="window.location.href='employee-login.html'">点击进入</button>
-            </div>
-            
-            <div class="portal-card academic">
-                <div class="portal-title">学术版</div>
-                <div class="portal-icon">
-                    <img src="images/学术端图标.png" alt="学术端">
-                </div>
-                <button class="portal-btn" onclick="window.location.href='academic-login.html'">点击进入</button>
-            </div>
-        </div>
-    </div>
+    <p>正在跳转到门户页面...</p>
+    <p>如果页面没有自动跳转，请<a href="portal/index.html">点击这里</a>。</p>
 </body>
 </html>
+

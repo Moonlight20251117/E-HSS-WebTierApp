@@ -1,0 +1,219 @@
+/* 业务模块通用样式 */
+.business-content-item {
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    min-height: 400px;
+}
+
+.content-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.content-header-row h2 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 24px;
+}
+
+.date-display {
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.stats-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    flex: 1;
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: transform 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+}
+
+.stat-card.blue { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+.stat-card.green { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+.stat-card.red { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+.stat-card.orange { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+
+.stat-card h3 {
+    font-size: 14px;
+    margin: 0 0 10px 0;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+.stat-num {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    align-items: center;
+}
+
+.search-input, .filter-select {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.search-input {
+    flex: 1;
+}
+
+.search-input:focus, .filter-select:focus {
+    outline: none;
+    border-color: #1e88e5;
+    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.1);
+}
+
+.btn-primary {
+    background: #1e88e5;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background: #1565c0;
+}
+
+.content-wrapper {
+    padding: 20px;
+    text-align: center;
+}
+
+.submit-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #1e88e5;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+.submit-btn:hover {
+    background: #1565c0;
+}
+
+/* 表格样式 */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.data-table thead {
+    background: #2c3e50;
+    color: white;
+}
+
+.data-table th,
+.data-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.data-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* 表单样式 */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #1e88e5;
+    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.1);
+}
+
+/* 卡片列表样式 */
+.card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card-item {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.card-content {
+    color: #6c757d;
+    font-size: 14px;
+    line-height: 1.6;
+}

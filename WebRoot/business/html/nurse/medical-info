@@ -1,0 +1,9 @@
+<div class="business-content-item">
+    <h2>疾病预防</h2>
+    <div class="content-wrapper">
+        <p>查看疾病预防相关信息</p>
+        <br>
+        <a href="#" class="btn submit-btn">查看预防</a>
+    </div>
+</div>
+

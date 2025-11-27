@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧医疗云系统 - 财务端</title>
+    
+    <!-- 引入基础样式 -->
+    <link rel="stylesheet" href="../../business/css/layout.css">
+    <link rel="stylesheet" href="../../business/css/finance.css">
+    <link rel="stylesheet" href="../../business/css/business-common.css">
+</head>
+<body>
+    <!-- 顶部标题栏 - 通过JavaScript动态加载 -->
+    <div id="header-container"></div>
+    <script>
+        fetch('../../basic/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+                document.getElementById('header-title').textContent = '智慧医疗云系统 - 财务端';
+                document.getElementById('user-welcome').textContent = '欢迎，财务用户';
+                document.getElementById('logout-link').href = '../../login/patient-login.html';
+                // 设置logo路径
+                const logoImg = document.getElementById('header-logo');
+                if (logoImg) {
+                    logoImg.src = '../../images/logo.jpg';
+                    logoImg.alt = '智慧医疗云';
+                }
+            });
+    </script>
+    
+    <!-- 横向导航栏 -->
+    <div class="horizontal-nav">
+        <ul>
+            <li><a href="#asset-management" class="active" data-group="asset-management">资产与资源管理</a></li>
+            <li><a href="#drug-purchase" data-group="drug-purchase">购药管理</a></li>
+            <li><a href="#financial-statistics" data-group="financial-statistics">财务统计分析</a></li>
+        </ul>
+    </div>
+    
+    <!-- 主容器 -->
+    <div class="business-container">
+        
+        <!-- 1. 资产与资源管理侧边栏 -->
+        <div class="business-sidebar" id="asset-management-sidebar">
+            <div class="nav-category">
+                <div class="nav-category-title">
+                    <span>资产管理</span>
+                    <span class="category-toggle expanded">▲</span>
+                </div>
+                <ul class="nav-sub-list" style="display: block;">
+                    <li class="nav-sub-item"><a href="#asset-list" class="active" data-content="asset-list">资产清单</a></li>
+                    <li class="nav-sub-item"><a href="#asset-allocation" data-content="asset-allocation">资产分配</a></li>
+                    <li class="nav-sub-item"><a href="#asset-maintenance" data-content="asset-maintenance">资产维护</a></li>
+                    <li class="nav-sub-item"><a href="#resource-usage" data-content="resource-usage">资源使用</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 2. 购药管理侧边栏 -->
+        <div class="business-sidebar" id="drug-purchase-sidebar" style="display: none;">
+            <div class="nav-category">
+                <div class="nav-category-title">
+                    <span>购药管理</span>
+                    <span class="category-toggle expanded">▲</span>
+                </div>
+                <ul class="nav-sub-list" style="display: block;">
+                    <li class="nav-sub-item"><a href="#purchase-request" class="active" data-content="purchase-request">采购申请</a></li>
+                    <li class="nav-sub-item"><a href="#purchase-order" data-content="purchase-order">采购订单</a></li>
+                    <li class="nav-sub-item"><a href="#drug-inventory" data-content="drug-inventory">药品库存</a></li>
+                    <li class="nav-sub-item"><a href="#purchase-history" data-content="purchase-history">采购历史</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 3. 财务统计分析侧边栏 -->
+        <div class="business-sidebar" id="financial-statistics-sidebar" style="display: none;">
+            <div class="nav-category">
+                <div class="nav-category-title">
+                    <span>财务统计</span>
+                    <span class="category-toggle expanded">▲</span>
+                </div>
+                <ul class="nav-sub-list" style="display: block;">
+                    <li class="nav-sub-item"><a href="#revenue-statistics" class="active" data-content="revenue-statistics">收入统计</a></li>
+                    <li class="nav-sub-item"><a href="#expense-statistics" data-content="expense-statistics">支出统计</a></li>
+                    <li class="nav-sub-item"><a href="#financial-report" data-content="financial-report">财务报表</a></li>
+                    <li class="nav-sub-item"><a href="#budget-analysis" data-content="budget-analysis">预算分析</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 右侧内容区 -->
+        <div class="business-content" id="business-content">
+            <!-- 内容将通过JavaScript从business/html目录动态加载 -->
+            <div id="business-content-placeholder">
+                <h2>请选择左侧菜单项</h2>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 页脚 - 通过JavaScript动态加载 -->
+    <div id="footer-container"></div>
+    <script>
+        fetch('../../basic/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
+    </script>
+
+    <!-- 脚本区域 -->
+    <script src="../../scripts/executive.js"></script>
+    <script src="../../scripts/common.js"></script>
+    <script src="../../business/scripts/business-common.js"></script>
+    <script>
+        // 初始化横向导航栏切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 使用统一的初始化函数
+            if (typeof initHorizontalNav === 'function') {
+                initHorizontalNav();
+            }
+            
+            // 动态加载业务内容
+            document.querySelectorAll('.nav-sub-item a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const contentId = this.getAttribute('data-content');
+                    const group = this.closest('.business-sidebar').id.replace('-sidebar', '');
+                    
+                    // 使用通用加载函数
+                    loadBusinessContent('finance', group, contentId);
+                    
+                    // 更新激活状态
+                    document.querySelectorAll('.nav-sub-item a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // 页面加载时加载默认内容
+            const defaultLink = document.querySelector('.nav-sub-item a.active');
+            if (defaultLink) {
+                defaultLink.click();
+            }
+        });
+    </script>
+
+</body>
+</html>
+

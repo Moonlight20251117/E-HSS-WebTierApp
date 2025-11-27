@@ -1,18 +1,37 @@
 // 登录表单验证
-document.querySelector('form').addEventListener('submit', function(e) {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const role = document.getElementById('role').value;
-    
-    if (!username || !password || !role) {
-        alert('请填写完整的登录信息并选择用户角色');
-        e.preventDefault();
-        return false;
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.querySelector('form');
+    if (loginForm && loginForm.action.includes('LoginServlet')) {
+        loginForm.addEventListener('submit', function(e) {
+            const username = document.getElementById('username');
+            const password = document.getElementById('password');
+            const role = document.getElementById('role');
+            
+            // 检查必填字段
+            if (!username || !username.value) {
+                alert('请输入用户名');
+                e.preventDefault();
+                return false;
+            }
+            
+            if (!password || !password.value) {
+                alert('请输入密码');
+                e.preventDefault();
+                return false;
+            }
+            
+            // 如果有角色选择框（select元素），检查是否已选择
+            // 对于隐藏的role字段（如patient-login.html中的hidden input），不需要检查
+            if (role && role.tagName === 'SELECT' && !role.value) {
+                alert('请选择用户角色');
+                e.preventDefault();
+                return false;
+            }
+            
+            // 不修改action，使用表单中已设置的action
+            return true;
+        });
     }
-    
-    // 根据角色设置表单提交地址
-    this.action = 'LoginServlet?role=' + role;
-    return true;
 });
 
 // 演示用函数
