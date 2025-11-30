@@ -8,12 +8,6 @@
     <servlet-class>Login</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>LoginServlet</servlet-name>
-    <display-name>LoginServlet</display-name>
-    <description>LoginServlet for patient, doctor, nurse and other roles</description>
-    <servlet-class>servlet.login.LoginServlet</servlet-class>
-  </servlet>
-  <servlet>
     <servlet-name>CooperationForumServlet_enterprise</servlet-name>
     <display-name>This is the display name of my J2EE component</display-name>
     <description>This is the description of my J2EE component</description>
@@ -35,10 +29,6 @@
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/servlet/Login</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/servlet/login/LoginServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>CooperationForumServlet_enterprise</servlet-name>

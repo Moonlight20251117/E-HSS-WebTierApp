@@ -1,7 +1,7 @@
 <div class="business-content-item active">
     <div class="content-header-row">
         <h2>日常护理工作</h2>
-        <div class="date-display">当前日期�?span id="current-date">2025-11-20</span></div>
+        <div class="date-display">当前日期：<span id="current-date">2025-11-20</span></div>
     </div>
 
     <!-- 顶部统计卡片 -->
@@ -11,7 +11,7 @@
             <p class="stat-num" id="todo-count">0</p>
         </div>
         <div class="stat-card green">
-            <h3>已完�?/h3>
+            <h3>已完成</h3>
             <p class="stat-num" id="done-count">0</p>
         </div>
         <div class="stat-card red">
@@ -22,24 +22,24 @@
 
     <!-- 筛选工具栏 -->
     <div class="toolbar">
-        <input type="text" id="task-search" placeholder="搜索床号或患者姓�?.." class="search-input">
-        <select id="task-filter" class="filter-select">
+        <input type="text" id="task-search" placeholder="搜索床号或患者姓名..." class="search-input">
+        <select id="task-filter" class="filter-select" aria-label="任务筛选" title="选择任务筛选条件">
             <option value="all">全部任务</option>
             <option value="pending">待办</option>
-            <option value="completed">已完�?/option>
+            <option value="completed">已完成</option>
         </select>
         <button class="btn btn-primary" onclick="refreshTasks()">刷新列表</button>
     </div>
 
     <!-- 任务列表容器 -->
     <div class="task-list-container">
-        <!-- 列表�?-->
+        <!-- 列表头 -->
         <div class="task-header">
             <span class="col-time">时间</span>
             <span class="col-bed">床号</span>
-            <span class="col-patient">患者姓�?/span>
+            <span class="col-patient">患者姓名</span>
             <span class="col-content">护理内容</span>
-            <span class="col-status">状�?/span>
+            <span class="col-status">状态</span>
             <span class="col-action">操作</span>
         </div>
         <!-- 任务列表内容 -->
@@ -50,5 +50,4 @@
 </div>
 <link rel="stylesheet" href="../../../business/css/nursing-service.css">
 <script src="../../../business/scripts/business-common.js"></script>
-<script src="../../../business/scripts/nursing-service.js"></script>
-
+<script src="../../../business/scripts/nursing-service.js?v=20250120"></script>

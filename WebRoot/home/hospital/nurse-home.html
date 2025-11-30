@@ -178,6 +178,47 @@
             if (defaultLink) {
                 defaultLink.click();
             }
+            
+            // 修复CodeLive按钮的无障碍访问问题（如果存在）
+            // 使用MutationObserver持续监听，因为CodeLive按钮可能是动态添加的
+            const codeLiveObserver = new MutationObserver(function(mutations) {
+                const codeLiveButton = document.getElementById('cl-close-main-panel-button');
+                if (codeLiveButton) {
+                    if (!codeLiveButton.getAttribute('title')) {
+                        codeLiveButton.setAttribute('title', '关闭面板');
+                    }
+                    if (!codeLiveButton.getAttribute('aria-label')) {
+                        codeLiveButton.setAttribute('aria-label', '关闭面板');
+                    }
+                    // 如果按钮没有文本内容，添加隐藏的文本
+                    if (!codeLiveButton.textContent.trim() && !codeLiveButton.querySelector('span[aria-hidden="true"]')) {
+                        const hiddenText = document.createElement('span');
+                        hiddenText.setAttribute('aria-hidden', 'true');
+                        hiddenText.style.display = 'none';
+                        hiddenText.textContent = '关闭';
+                        codeLiveButton.appendChild(hiddenText);
+                    }
+                }
+            });
+            
+            // 观察整个body的变化
+            codeLiveObserver.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+            
+            // 立即检查一次
+            setTimeout(() => {
+                const codeLiveButton = document.getElementById('cl-close-main-panel-button');
+                if (codeLiveButton) {
+                    if (!codeLiveButton.getAttribute('title')) {
+                        codeLiveButton.setAttribute('title', '关闭面板');
+                    }
+                    if (!codeLiveButton.getAttribute('aria-label')) {
+                        codeLiveButton.setAttribute('aria-label', '关闭面板');
+                    }
+                }
+            }, 500);
         });
     </script>
 

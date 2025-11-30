@@ -1,35 +1,41 @@
 // 页面加载完成后执行
 document.addEventListener('DOMContentLoaded', function() {
-    // 横向导航切换
+    // 横向导航切换 - 只处理使用 data-nav 属性的页面
+    // 如果使用 data-group 属性，则由 business-common.js 的 initHorizontalNav 处理
     const navLinks = document.querySelectorAll('.horizontal-nav a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // 移除所有导航的active类
-            navLinks.forEach(l => l.classList.remove('active'));
-            // 给当前点击的导航添加active类
-            this.classList.add('active');
-            
-            // 隐藏所有侧边栏
-            document.querySelectorAll('.business-sidebar').forEach(sidebar => {
-                sidebar.style.display = 'none';
+    const hasDataGroup = navLinks.length > 0 && navLinks[0].hasAttribute('data-group');
+    
+    // 只有在没有 data-group 属性时才处理（使用 data-nav 的旧页面）
+    if (!hasDataGroup) {
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // 移除所有导航的active类
+                navLinks.forEach(l => l.classList.remove('active'));
+                // 给当前点击的导航添加active类
+                this.classList.add('active');
+                
+                // 隐藏所有侧边栏
+                document.querySelectorAll('.business-sidebar').forEach(sidebar => {
+                    sidebar.style.display = 'none';
+                });
+                
+                // 显示对应的侧边栏
+                const nav = this.getAttribute('data-nav');
+                document.getElementById(`${nav}-sidebar`).style.display = 'block';
+                
+                // 重置内容区域
+                document.querySelectorAll('.business-content-item').forEach(item => {
+                    item.style.display = 'none';
+                });
+                
+                // 显示默认内容
+                const defaultContent = document.querySelector(`#${nav}-sidebar .nav-sub-item a.active, #${nav}-sidebar .nav-item a.active`).getAttribute('data-content');
+                document.getElementById(defaultContent).style.display = 'block';
             });
-            
-            // 显示对应的侧边栏
-            const nav = this.getAttribute('data-nav');
-            document.getElementById(`${nav}-sidebar`).style.display = 'block';
-            
-            // 重置内容区域
-            document.querySelectorAll('.business-content-item').forEach(item => {
-                item.style.display = 'none';
-            });
-            
-            // 显示默认内容
-            const defaultContent = document.querySelector(`#${nav}-sidebar .nav-sub-item a.active, #${nav}-sidebar .nav-item a.active`).getAttribute('data-content');
-            document.getElementById(defaultContent).style.display = 'block';
         });
-    });
+    }
     
     // 侧边栏一级分类展开/折叠
     const categoryTitles = document.querySelectorAll('.nav-category-title');

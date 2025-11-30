@@ -143,16 +143,17 @@ function loadBusinessContent(role, group, contentId) {
         'business-manage': 'BusinessManage',
         'user-manage': 'UserManage',
         'cooperation-forum': 'CooperationForum',
+        'forum-overview': 'CooperationForum', // 论坛管理（高管端）
         'medical-service': 'MedicalService',
-        'electronic-record': 'ElectronicRecord',
+        'electronic-record': 'electronic-record', // 护士的电子病历使用小写
         'remote-diagnosis': 'RemoteDiagnosis',
         'remote-consultation': 'RemoteConsultation',
         'medical-advice': 'MedicalAdvice',
-        'disease-management': 'DiseaseManagement',
+        'disease-management': 'disease-management', // 护士的疾病管理使用小写
         'asset-management': 'AssetManagement',
         'drug-purchase': 'DrugPurchase',
         'financial-statistics': 'FinancialStatistics',
-        'nursing-service': 'MedicalService', // 护士的护理服务对应MedicalService
+        'nursing-service': 'nursing-service', // 护士的护理服务
         'appointment': 'appointment', // 患者预约使用小写appointment文件夹
         'medical-record': 'electronic-record', // 患者的医疗记录使用小写electronic-record文件夹
         'remote-diagnosis': 'remote-diagnosis', // 患者的远程诊断使用小写remote-diagnosis文件夹
@@ -256,9 +257,9 @@ function loadBusinessContent(role, group, contentId) {
     } else if (role === 'doctor') {
         basePath += 'hospital/doctor/';
     } else if (role === 'nurse') {
-        basePath += 'hospital/nurse/';
+        basePath += 'nurse/';
     } else if (role === 'executive') {
-        basePath += 'hospital/executive/';
+        basePath += 'executive/';
     } else if (role === 'finance') {
         basePath += 'hospital/finance/';
     }
@@ -278,16 +279,70 @@ function loadBusinessContent(role, group, contentId) {
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = html;
             
+            // 辅助函数：将相对路径转换为绝对路径（从项目根目录开始）
+            function resolvePath(relativePath) {
+                // 如果已经是绝对路径或完整URL，直接返回
+                if (relativePath.startsWith('http://') || relativePath.startsWith('https://')) {
+                    return relativePath;
+                }
+                
+                // 如果以 / 开头，已经是绝对路径，直接返回
+                if (relativePath.startsWith('/')) {
+                    return relativePath;
+                }
+                
+                // 获取当前页面的基础URL和路径
+                const currentPath = window.location.pathname;
+                
+                // 提取项目上下文路径（例如: /E-HSS/）
+                // 当前页面路径可能是: /E-HSS/home/hospital/nurse-home.html
+                const pathParts = currentPath.split('/').filter(p => p);
+                let contextPath = '/';
+                if (pathParts.length > 0) {
+                    // 假设第一个部分是项目名（如 E-HSS）
+                    contextPath = '/' + pathParts[0] + '/';
+                }
+                
+                // 手动解析相对路径，避免URL API的路径重复问题
+                // HTML文件在: business/html/nurse/nursing-service/daily-nursing.html
+                // 相对路径 ../../../business/scripts/nursing-service.js
+                // 从 business/html/nurse/nursing-service/ 向上3级到项目根，然后加上 business/scripts/nursing-service.js
+                // 结果: /E-HSS/business/scripts/nursing-service.js
+                
+                let pathAfterUp = relativePath;
+                let upLevels = 0;
+                
+                // 计算向上级数
+                while (pathAfterUp.startsWith('../')) {
+                    upLevels++;
+                    pathAfterUp = pathAfterUp.substring(3);
+                }
+                
+                // 移除开头的 /（如果有）
+                if (pathAfterUp.startsWith('/')) {
+                    pathAfterUp = pathAfterUp.substring(1);
+                }
+                
+                // 构建最终路径：项目根 + 剩余路径
+                const finalPath = contextPath + pathAfterUp;
+                console.log('解析路径 - 相对路径:', relativePath, '向上级数:', upLevels, '剩余路径:', pathAfterUp, '解析结果:', finalPath);
+                return finalPath;
+            }
+            
             // 处理CSS link标签
             const links = tempDiv.querySelectorAll('link[rel="stylesheet"]');
             links.forEach(link => {
                 const href = link.getAttribute('href');
+                const absoluteHref = resolvePath(href);
+                
+                console.log('加载CSS:', href, '->', absoluteHref);
+                
                 // 检查是否已经加载过这个CSS
-                const existingLink = document.querySelector(`link[href="${href}"]`);
+                const existingLink = document.querySelector(`link[href="${absoluteHref}"]`);
                 if (!existingLink) {
                     const newLink = document.createElement('link');
                     newLink.rel = 'stylesheet';
-                    newLink.href = href;
+                    newLink.href = absoluteHref;
                     document.head.appendChild(newLink);
                 }
                 // 从HTML中移除link标签
@@ -302,7 +357,21 @@ function loadBusinessContent(role, group, contentId) {
             scripts.forEach(script => {
                 const newScript = document.createElement('script');
                 if (script.src) {
-                    newScript.src = script.src;
+                    // 获取script标签的src属性值（可能是相对路径）
+                    const scriptSrc = script.getAttribute('src');
+                    const absoluteSrc = resolvePath(scriptSrc);
+                    
+                    // 检查脚本是否已经加载过（避免重复加载）
+                    const scriptId = 'loaded-script-' + absoluteSrc.replace(/[^a-zA-Z0-9]/g, '-');
+                    if (document.getElementById(scriptId)) {
+                        console.log('脚本已加载，跳过:', absoluteSrc);
+                        script.remove();
+                        return;
+                    }
+                    
+                    console.log('加载JS - 原始路径:', scriptSrc, '解析后路径:', absoluteSrc);
+                    newScript.src = absoluteSrc;
+                    newScript.id = scriptId;
                 } else {
                     newScript.textContent = script.textContent;
                 }
@@ -321,6 +390,15 @@ function loadBusinessContent(role, group, contentId) {
  * 确保侧边栏始终显示
  */
 function initHorizontalNav() {
+    // 先移除所有可能存在的旧事件监听器
+    const existingLinks = document.querySelectorAll('.horizontal-nav a');
+    existingLinks.forEach(link => {
+        // 克隆节点以移除所有事件监听器
+        const newLink = link.cloneNode(true);
+        link.parentNode.replaceChild(newLink, link);
+    });
+    
+    // 重新获取所有导航链接（此时已经是新的节点）
     const horizontalNavLinks = document.querySelectorAll('.horizontal-nav a');
     
     // 初始化时移除所有active状态，确保默认不显示高亮
@@ -328,16 +406,26 @@ function initHorizontalNav() {
         a.classList.remove('active');
     });
     
+    // 为每个导航链接添加点击事件
     horizontalNavLinks.forEach(link => {
-        // 移除可能存在的旧事件监听器
-        const newLink = link.cloneNode(true);
-        link.parentNode.replaceChild(newLink, link);
-        
-        newLink.addEventListener('click', function(e) {
+        link.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation(); // 阻止事件冒泡
             
             const group = this.getAttribute('data-group');
+            
+            // 更新横向导航栏激活状态 - 先移除所有active，再添加当前点击的active
+            // 重新查询所有导航链接，确保获取到最新的DOM节点
+            const allNavLinks = document.querySelectorAll('.horizontal-nav a');
+            allNavLinks.forEach(a => {
+                // 强制移除active类
+                a.classList.remove('active');
+                // 移除active后恢复默认样式 - 清除所有可能的内联样式
+                a.removeAttribute('style');
+            });
+            
+            // 给当前点击的导航单元添加active类
+            this.classList.add('active');
             
             // 隐藏所有侧边栏
             document.querySelectorAll('.business-sidebar').forEach(sidebar => {
@@ -380,15 +468,6 @@ function initHorizontalNav() {
                     }
                 }
             }
-            
-            // 更新横向导航栏激活状态 - 只有点击时才高亮
-            horizontalNavLinks.forEach(a => {
-                a.classList.remove('active');
-                // 移除active后恢复默认样式
-                a.style.backgroundColor = '';
-                a.style.color = '';
-            });
-            this.classList.add('active');
         });
     });
 }

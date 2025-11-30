@@ -3,103 +3,130 @@
 <head>
     <title>智慧医疗云系统</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../business/css/login.css">
     <style>
-        /* 基础样式：确保页面占满屏幕 */
         html, body {
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden; /* 避免滚动条 */
+            font-family: "Microsoft Yahei", "PingFang SC", sans-serif;
         }
 
         .portal-container {
             position: relative;
-            height: 100vh; /* 占满整个屏幕高度 */
-            background-image: url('../images/bg.jpg'); 
-            background-size: cover; /* 覆盖整个容器 */
-            background-position: center; /* 居中显示 */
-            background-repeat: no-repeat; /* 不重复 */
+            height: 100vh;
+            background-image: url('../images/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
         }
 
         .portal-header {
-            padding: 20px 40px; /* 增加内边距 */
+            position: relative;
+            padding: 20px;
+            color: white;
             display: flex;
             align-items: center;
+            z-index: 3;
+        }
+
+        .portal-logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 24px;
         }
 
         .portal-logo img {
-            width: 60px; /* logo宽度 */
-            height: 60px; /* logo高度 */
-            border-radius: 50%; /* 圆形logo */
-            margin-right: 15px; /* 与文字间距 */
-        }
-
-        .portal-logo span {
-            color: #fff; /* 白色文字（与背景对比） */
-            font-size: 24px;
-            font-weight: bold;
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            object-fit: cover;
         }
 
         .portal-content {
-            /* 内容区居中：垂直方向在屏幕中间，水平居中 */
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            position: relative;
             display: flex;
-            gap: 50px; /* 卡片之间的间距 */
+            justify-content: center;
+            align-items: center;
+            height: calc(100% - 100px);
+            gap: 30px;
+            flex-wrap: wrap;
+            padding: 0 50px;
         }
 
         .portal-card {
             width: 280px;
-            padding: 30px 20px;
+            padding: 35px 25px;
             text-align: center;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        /* 各卡片颜色 */
+        .portal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
         .portal-card.patient {
             background-color: rgba(121, 215, 190, 0.9);
+            color: #fff;
+            margin-top: -20px;
         }
+
         .portal-card.employee {
             background-color: rgba(77, 161, 169, 0.9);
+            color: #fff;
+            margin-bottom: -20px;
         }
+
         .portal-card.academic {
             background-color: rgba(46, 80, 119, 0.9);
+            color: #fff;
         }
 
         .portal-title {
-            color: #fff;
             font-size: 22px;
-            margin: 0 0 20px 0; /* 底部间距 */
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .portal-icon {
+            margin-bottom: 30px;
         }
 
         .portal-icon img {
-            width: 120px; /* 图标宽度 */
-            height: 120px; /* 图标高度 */
-            margin: 0 auto 20px; /* 居中+底部间距 */
-            display: block; /* 确保图片显示 */
+            width: 120px;
+            height: 120px;
         }
 
         .portal-btn {
             width: 100%;
-            padding: 10px 0;
+            padding: 12px 25px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-size: 16px;
             cursor: pointer;
-            background-color: rgba(255,255,255,0.9);
+            transition: all 0.3s;
+            background-color: rgba(255, 255, 255, 0.9);
         }
 
-        /* 按钮文字颜色与卡片匹配 */
+        .portal-btn:hover {
+            background-color: white;
+            transform: scale(1.05);
+        }
+
         .portal-card.patient .portal-btn {
             color: #79D7BE;
         }
+
         .portal-card.employee .portal-btn {
             color: #4DA1A9;
         }
+
         .portal-card.academic .portal-btn {
             color: #2E5077;
         }
@@ -107,10 +134,9 @@
 </head>
 <body>
     <div class="portal-container">
-        <!-- 头部Logo区域 -->
+        <!-- 头部Logo区域（调整Logo路径） -->
         <div class="portal-header">
             <div class="portal-logo">
-                <!-- Logo图片路径：从portal到images的相对路径 -->
                 <img src="../images/logo.jpg" alt="智慧医疗云Logo">
                 <span>智慧医疗云系统</span>
             </div>
@@ -121,28 +147,25 @@
             <div class="portal-card patient">
                 <div class="portal-title">患者版</div>
                 <div class="portal-icon">
-                    <!-- 患者端图标路径 -->
                     <img src="../images/患者端图标.png" alt="患者端图标">
                 </div>
-                <button class="portal-btn" onclick="window.location.href='../login/patient-login.html'">点击进入</button>
+                <button class="portal-btn" onclick="window.location.href='../login/patient-login.html'">点击进入</button> <!-- 调整：../login -->
             </div>
 
             <div class="portal-card employee">
                 <div class="portal-title">员工版</div>
                 <div class="portal-icon">
-                    <!-- 员工端图标路径 -->
                     <img src="../images/员工端图标.png" alt="员工端图标">
                 </div>
-                <button class="portal-btn" onclick="window.location.href='../login/employee-login.html'">点击进入</button>
+                <button class="portal-btn" onclick="window.location.href='../login/employee-login.html'">点击进入</button> <!-- 调整：../login -->
             </div>
 
             <div class="portal-card academic">
                 <div class="portal-title">学术版</div>
                 <div class="portal-icon">
-                    <!-- 学术端图标路径 -->
                     <img src="../images/学术端图标.png" alt="学术端图标">
                 </div>
-                <button class="portal-btn" onclick="window.location.href='../login/academic-login.html'">点击进入</button>
+                <button class="portal-btn" onclick="window.location.href='../login/academic-login.html'">点击进入</button> <!-- 调整：../login -->
             </div>
         </div>
     </div>

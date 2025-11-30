@@ -108,6 +108,7 @@
     padding: 4px 8px;
     border-radius: 12px;
     font-size: 12px;
+    display: inline-block;
 }
 
 .badge-pending {
@@ -115,9 +116,19 @@
     color: #856404;
 }
 
+.badge-processing {
+    background: #cfe2ff;
+    color: #084298;
+}
+
 .badge-done {
     background: #d4edda;
     color: #155724;
+}
+
+.badge-cancelled {
+    background: #f8d7da;
+    color: #721c24;
 }
 
 .btn-sm {
@@ -144,5 +155,27 @@
 
 .btn-undo:hover {
     background: #7f8c8d;
+}
+
+/* 状态选择下拉框样式 */
+.status-select {
+    padding: 5px 8px;
+    font-size: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    min-width: 100px;
+    transition: border-color 0.2s;
+}
+
+.status-select:hover {
+    border-color: #007bff;
+}
+
+.status-select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 

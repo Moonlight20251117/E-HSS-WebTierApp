@@ -3,10 +3,10 @@ package util;
 import java.sql.*;
 
 public class DBUtil {
-    // 数据库配置
-    private static final String URL = "jdbc:mysql://localhost:3306/cloud_db?useSSL=false&serverTimezone=UTC&characterEncoding=utf-8";
+    // 数据库配置 - 使用新的数据库 smart_medical_system
+    private static final String URL = "jdbc:mysql://localhost:3306/smart_medical_system?useSSL=false&serverTimezone=UTC&characterEncoding=utf-8";
     private static final String USER = "root"; 
-    private static final String PASSWORD = "314159"; // 你的密码
+    private static final String PASSWORD = "1234";
 
     static {
         try {

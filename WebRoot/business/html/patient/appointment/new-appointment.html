@@ -152,24 +152,47 @@
 <link rel="stylesheet" href="../../../business/css/appointment.css">
 <script>
 (function() {
-    // 存储选择的预约信息
-    let selectedAppointment = {
-        department: '',
-        doctor: '',
-        time: ''
-    };
+    // 存储选择的预约信息 - 改为数组，支持多个预约
+    let selectedAppointments = [];
     
     // 步骤1：选择时间
     document.querySelectorAll('.time-slot').forEach(slot => {
         slot.addEventListener('click', function() {
-            // 移除其他选中状态
-            document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
-            // 添加选中状态
-            this.classList.add('selected');
-            // 保存选择的信息
-            selectedAppointment.department = this.getAttribute('data-department');
-            selectedAppointment.doctor = this.getAttribute('data-doctor');
-            selectedAppointment.time = this.getAttribute('data-time');
+            const department = this.getAttribute('data-department');
+            const doctor = this.getAttribute('data-doctor');
+            const time = this.getAttribute('data-time');
+            
+            // 检查该时间段是否已被选中
+            const isSelected = this.classList.contains('selected');
+            
+            if (isSelected) {
+                // 如果已选中，则取消选择
+                this.classList.remove('selected');
+                // 从数组中移除
+                selectedAppointments = selectedAppointments.filter(apt => 
+                    !(apt.department === department && apt.doctor === doctor && apt.time === time)
+                );
+            } else {
+                // 检查同一诊室是否已有其他时间段被选中
+                const sameDepartmentAppointment = selectedAppointments.find(apt => 
+                    apt.department === department && apt.doctor === doctor
+                );
+                
+                if (sameDepartmentAppointment) {
+                    // 同一诊室已有时间段被选中，给出提醒
+                    alert('同一诊室一次性只可以预约一个时间段');
+                    return;
+                }
+                
+                // 添加选中状态
+                this.classList.add('selected');
+                // 保存选择的信息
+                selectedAppointments.push({
+                    department: department,
+                    doctor: doctor,
+                    time: time
+                });
+            }
         });
     });
     
@@ -177,14 +200,21 @@
     const step1Next = document.getElementById('step1-next');
     if (step1Next) {
         step1Next.addEventListener('click', function() {
-            if (!selectedAppointment.time) {
+            if (selectedAppointments.length === 0) {
                 alert('请先选择预约时间');
                 return;
             }
-            // 更新步骤2的确认信息
-            document.getElementById('confirm-department').textContent = selectedAppointment.department;
-            document.getElementById('confirm-doctor').textContent = selectedAppointment.doctor;
-            document.getElementById('confirm-time').textContent = selectedAppointment.time;
+            // 更新步骤2的确认信息 - 显示第一个预约信息（或可以显示所有）
+            const firstAppointment = selectedAppointments[0];
+            document.getElementById('confirm-department').textContent = firstAppointment.department;
+            document.getElementById('confirm-doctor').textContent = firstAppointment.doctor;
+            document.getElementById('confirm-time').textContent = firstAppointment.time;
+            // 如果有多个预约，可以在这里显示提示
+            if (selectedAppointments.length > 1) {
+                // 可以扩展显示多个预约信息
+                document.getElementById('confirm-time').textContent = 
+                    firstAppointment.time + ' 等' + selectedAppointments.length + '个时间段';
+            }
             // 切换到步骤2
             goToStep(2);
         });
@@ -202,10 +232,16 @@
     const step2Next = document.getElementById('step2-next');
     if (step2Next) {
         step2Next.addEventListener('click', function() {
-            // 更新步骤3的成功信息
-            document.getElementById('success-department').textContent = selectedAppointment.department;
-            document.getElementById('success-doctor').textContent = selectedAppointment.doctor;
-            document.getElementById('success-time').textContent = selectedAppointment.time;
+            // 更新步骤3的成功信息 - 显示第一个预约信息
+            const firstAppointment = selectedAppointments[0];
+            document.getElementById('success-department').textContent = firstAppointment.department;
+            document.getElementById('success-doctor').textContent = firstAppointment.doctor;
+            document.getElementById('success-time').textContent = firstAppointment.time;
+            // 如果有多个预约，显示提示
+            if (selectedAppointments.length > 1) {
+                document.getElementById('success-time').textContent = 
+                    firstAppointment.time + ' 等' + selectedAppointments.length + '个时间段';
+            }
             // 切换到步骤3
             goToStep(3);
         });

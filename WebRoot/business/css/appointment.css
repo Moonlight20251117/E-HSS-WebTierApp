@@ -21,39 +21,16 @@
     font-weight: bold;
 }
 
-/* 横向导航栏样式 */
-.horizontal-nav {
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #e9ecef;
-    margin-top: 10px; /* 为logo留出空间 */
-}
-
-.horizontal-nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-}
-
-.horizontal-nav li {
-    flex: auto;
-    text-align: center;
-}
-
-.horizontal-nav a {
-    display: block;
-    padding: 15px 20px;
-    color: #495057;
-    text-decoration: none;
-    font-size: 16px;
-    transition: all 0.3s;
-    border-bottom: 3px solid transparent;
-}
-
-.horizontal-nav a:hover, .horizontal-nav a.active {
-    color: #165DFF;
-    border-bottom-color: #165DFF;
-    background-color: rgba(22, 93, 255, 0.05);
+/* 横向导航栏样式 - 针对patient-home.html */
+/* 默认状态恢复为 layout.css 的原始样式，不覆盖 */
+/* 只添加点击后的突出显示效果 */
+.horizontal-nav a.active {
+    border: 2px solid #165DFF !important; /* 点击后边框变为蓝色 */
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(22, 93, 255, 0.3) !important; /* 上浮加强效果 */
+    transform: translateY(-2px) !important; /* 上浮效果 */
+    position: relative;
+    z-index: 1;
 }
 
 /* 业务内容区域样式 */
