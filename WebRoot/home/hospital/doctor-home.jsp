@@ -1,0 +1,170 @@
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+%>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <base href="<%=basePath%>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧医疗云系统 - 医生端</title>
+    
+    <!-- 引入基础样式 -->
+    <link rel="stylesheet" href="<%=basePath%>business/css/layout.css">
+    <link rel="stylesheet" href="<%=basePath%>business/css/business-common.css">
+</head>
+<body>
+    <!-- 顶部标题栏 -->
+    <%
+    request.setAttribute("pageTitle", "智慧医疗云系统 - 医生端");
+    request.setAttribute("userWelcome", "欢迎，医生用户");
+    request.setAttribute("logoutLink", basePath + "login/employee-login.jsp");
+    %>
+    <jsp:include page="../../business/basic/header.jsp" />
+    
+    <!-- 横向导航栏 -->
+    <div class="horizontal-nav">
+        <ul>
+            <li><a href="#medical-service" class="active" data-group="medical-service">医务管理</a></li>
+            <li><a href="#electronic-record" data-group="electronic-record">电子病历</a></li>
+            <li><a href="#remote-services" data-group="remote-services">远程医疗</a></li>
+            <li><a href="#disease-management" data-group="disease-management">疾病管理</a></li>
+            <li><a href="#medical-info" data-group="medical-info">医疗资讯</a></li>
+        </ul>
+    </div>
+    
+    <!-- 主容器 -->
+    <div class="business-container">
+        
+        <!-- 1. 医务管理侧边栏 -->
+        <div class="business-sidebar" id="medical-service-sidebar">
+            <div class="nav-category">
+                <div class="nav-category-title">
+                    <span>医务服务</span>
+                    <span class="category-toggle expanded">▲</span>
+                </div>
+                <ul class="nav-sub-list" style="display: block;">
+                    <li class="nav-sub-item"><a href="#daily-work" class="active" data-content="daily-work">日常工作安排</a></li>
+                    <li class="nav-sub-item"><a href="#patient-care" data-content="patient-care">患者护理安排</a></li>
+                    <li class="nav-sub-item"><a href="#schedule" data-content="schedule">出诊安排</a></li>
+                    <li class="nav-sub-item"><a href="#statistics" data-content="statistics">工作统计</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 2. 电子病历侧边栏 -->
+        <div class="business-sidebar" id="electronic-record-sidebar" style="display: none;">
+            <div class="nav-category">
+                <div class="nav-category-title">
+                    <span>病历管理</span>
+                    <span class="category-toggle expanded">▲</span>
+                </div>
+                <ul class="nav-sub-list" style="display: block;">
+                    <li class="nav-sub-item"><a href="#view-records" class="active" data-content="view-records">查看病历</a></li>
+                    <li class="nav-sub-item"><a href="#add-record" data-content="add-record">添加病历</a></li>
+                    <li class="nav-sub-item"><a href="#edit-record" data-content="edit-record">编辑病历</a></li>
+                    <li class="nav-sub-item"><a href="#record-settings" data-content="record-settings">病历设置</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 3. 远程医疗侧边栏 -->
+        <div class="business-sidebar" id="remote-services-sidebar" style="display: none;">
+            <div class="nav-category">
+                <div class="nav-category-title">
+                    <span>远程服务</span>
+                    <span class="category-toggle expanded">▲</span>
+                </div>
+                <ul class="nav-sub-list" style="display: block;">
+                    <li class="nav-sub-item"><a href="#remote-diagnosis" class="active" data-content="remote-diagnosis">远程诊断</a></li>
+                    <li class="nav-sub-item"><a href="#remote-consultation" data-content="remote-consultation">远程干预</a></li>
+                    <li class="nav-sub-item"><a href="#medical-advice" data-content="medical-advice">医疗咨询</a></li>
+                    <li class="nav-sub-item"><a href="#remote-history" data-content="remote-history">服务历史</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 4. 疾病管理侧边栏 -->
+        <div class="business-sidebar" id="disease-management-sidebar" style="display: none;">
+            <div class="nav-category">
+                <div class="nav-category-title">
+                    <span>疾病管理</span>
+                    <span class="category-toggle expanded">▲</span>
+                </div>
+                <ul class="nav-sub-list" style="display: block;">
+                    <li class="nav-sub-item"><a href="#epidemic-monitor" class="active" data-content="epidemic-monitor">疫情监控</a></li>
+                    <li class="nav-sub-item"><a href="#disease-report" data-content="disease-report">疾病上报</a></li>
+                    <li class="nav-sub-item"><a href="#statistics-analysis" data-content="statistics-analysis">统计分析</a></li>
+                    <li class="nav-sub-item"><a href="#prevention-guide" data-content="prevention-guide">预防指南</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 5. 医疗资讯侧边栏 -->
+        <div class="business-sidebar" id="medical-info-sidebar" style="display: none;">
+            <div class="nav-category">
+                <div class="nav-category-title">
+                    <span>医疗资讯</span>
+                    <span class="category-toggle expanded">▲</span>
+                </div>
+                <ul class="nav-sub-list" style="display: block;">
+                    <li class="nav-sub-item"><a href="#health-news" class="active" data-content="health-news">健康新闻</a></li>
+                    <li class="nav-sub-item"><a href="#disease-prevent" data-content="disease-prevent">疾病预防</a></li>
+                    <li class="nav-sub-item"><a href="#medical-knowledge" data-content="medical-knowledge">医疗知识</a></li>
+                    <li class="nav-sub-item"><a href="#hospital-info" data-content="hospital-info">医院信息</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 右侧内容区 -->
+        <div class="business-content" id="business-content">
+            <!-- 内容将通过JavaScript从business/html目录动态加载 -->
+            <div id="business-content-placeholder">
+                <h2>请选择左侧菜单项</h2>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <jsp:include page="../../business/basic/footer.jsp" />
+
+    <!-- 脚本区域 -->
+    <script src="<%=basePath%>business/scripts/executive-home.js"></script>
+    <script src="<%=basePath%>business/scripts/nurse-common.js"></script>
+    <script src="<%=basePath%>business/scripts/business-common.js"></script>
+    <script>
+        // 初始化横向导航栏切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 使用统一的初始化函数
+            if (typeof initHorizontalNav === 'function') {
+                initHorizontalNav();
+            }
+            
+            // 动态加载业务内容
+            document.querySelectorAll('.nav-sub-item a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const contentId = this.getAttribute('data-content');
+                    const group = this.closest('.business-sidebar').id.replace('-sidebar', '');
+                    
+                    // 使用通用加载函数
+                    loadBusinessContent('doctor', group, contentId);
+                    
+                    // 更新激活状态
+                    document.querySelectorAll('.nav-sub-item a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // 页面加载时加载默认内容
+            const defaultLink = document.querySelector('.nav-sub-item a.active');
+            if (defaultLink) {
+                defaultLink.click();
+            }
+        });
+    </script>
+
+</body>
+</html>

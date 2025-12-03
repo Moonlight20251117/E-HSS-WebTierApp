@@ -1,0 +1,23 @@
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+%>
+<div class="business-content-item">
+    <h2>发布内容</h2>
+    <form class="publish-form" action="../../../../servlet/hospital/executive/CooperationForumServlet_executive" method="post">
+        <div class="form-group">
+            <label>内容标题</label>
+            <input type="text" class="form-control" name="title" placeholder="请输入标题（不超�?0字）" required>
+        </div>
+        <div class="form-group">
+            <label>内容详情</label>
+            <textarea class="form-control" name="content" rows="6" placeholder="请输入内容详�? required></textarea>
+        </div>
+        <div class="form-actions">
+            <button type="button" class="btn btn-secondary cancel-btn">取消</button>
+            <button type="submit" class="btn submit-btn">提交审核</button>
+        </div>
+    </form>
+</div>
+

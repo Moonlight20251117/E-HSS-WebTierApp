@@ -1,0 +1,38 @@
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+%>
+<div class="business-content-item">
+    <h2>论坛首页</h2>
+    <div class="filter-bar">
+        <select class="post-filter">
+            <option value="all">全部内容</option>
+            <option value="enterprise">企业发布</option>
+            <option value="university">高校发布</option>
+            <option value="executive">医院发布</option>
+        </select>
+        <input type="text" class="search-box" placeholder="搜索帖子...">
+        <button class="search-btn">搜索</button>
+    </div>
+
+    <div class="posts-container">
+        <div class="post-card">
+            <div class="post-header">
+                <span class="post-author">某省人民医院（医院高管）</span>
+                <span class="post-time">2025-11-16 16:40</span>
+            </div>
+            <div class="post-title">临床研究合作需�?/div>
+            <div class="post-content">
+                我院计划开�?糖尿病并发症早期干预"临床研究，需招募3家高校共同参与，要求具备相关领域研究基础，有意向者请联系...
+            </div>
+            <div class="post-actions">
+                <button class="reply-btn">回复</button>
+                <button class="collect-btn">收藏</button>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="<%=basePath%>business/css/forum.css">
+<script src="<%=basePath%>business/scripts/forum.js"></script>
+

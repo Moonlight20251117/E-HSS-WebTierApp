@@ -1,0 +1,101 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+%>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <base href="<%=basePath%>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧医疗云 - 管理员</title>
+    <link rel="stylesheet" href="<%=basePath%>business/css/layout.css">
+    <link rel="stylesheet" href="<%=basePath%>business/css/forum.css">
+    <link rel="stylesheet" href="<%=basePath%>business/css/business-common.css">
+</head>
+
+<body>
+    <!-- 顶部标题栏 -->
+    <%
+    request.setAttribute("pageTitle", "智慧医疗云系统 - 论坛管理");
+    request.setAttribute("userWelcome", "欢迎，管理员");
+    request.setAttribute("logoutLink", basePath + "login/patient-login.jsp");
+    %>
+    <jsp:include page="../../business/basic/header.jsp" />
+
+    <!-- 横向导航栏 -->
+    <div class="horizontal-nav">
+        <ul>
+            <li><a href="#forum-management" class="active" data-group="forum-management">论坛管理</a></li>
+        </ul>
+    </div>
+
+    <!-- 主容器 -->
+    <div class="business-container">
+        <!-- 左侧竖向导航栏 -->
+        <div class="business-sidebar" id="forum-management-sidebar">
+            <div class="nav-category">
+                <div class="nav-category-title">
+                    <span>管理功能</span>
+                    <span class="category-toggle expanded">▲</span>
+                </div>
+                <ul class="nav-sub-list" style="display: block;">
+                    <li class="nav-sub-item"><a href="#pending-review" class="active" data-content="pending-review">待审核内容</a></li>
+                    <li class="nav-sub-item"><a href="#reviewed-log" data-content="reviewed-log">审核日志</a></li>
+                    <li class="nav-sub-item"><a href="#all-posts" data-content="all-posts">所有帖子</a></li>
+                    <li class="nav-sub-item"><a href="#user-management" data-content="user-management">用户管理</a></li>
+                    <li class="nav-sub-item"><a href="#system-stats" data-content="system-stats">系统统计</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 右侧内容区 -->
+        <div class="business-content" id="business-content">
+            <!-- 内容将通过JavaScript从business/html目录动态加载 -->
+            <div id="business-content-placeholder">
+                <h2>请选择左侧菜单项</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <jsp:include page="../../business/basic/footer.jsp" />
+
+    <script src="<%=basePath%>business/scripts/admin-home.js"></script>
+    <script src="<%=basePath%>business/scripts/executive-home.js"></script>
+    <script src="<%=basePath%>business/scripts/business-common.js"></script>
+    <script>
+        // 初始化横向导航栏切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 使用统一的初始化函数
+            if (typeof initHorizontalNav === 'function') {
+                initHorizontalNav();
+            }
+            
+            // 动态加载业务内容
+            document.querySelectorAll('.nav-sub-item a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const contentId = this.getAttribute('data-content');
+                    const group = this.closest('.business-sidebar').id.replace('-sidebar', '');
+                    
+                    // 使用通用加载函数
+                    loadBusinessContent('admin', group, contentId);
+                    
+                    // 更新激活状态
+                    document.querySelectorAll('.nav-sub-item a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // 页面加载时加载默认内容
+            const defaultLink = document.querySelector('.nav-sub-item a.active');
+            if (defaultLink) {
+                defaultLink.click();
+            }
+        });
+    </script>
+</body>
+</html>
+

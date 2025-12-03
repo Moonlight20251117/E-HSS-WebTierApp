@@ -1,0 +1,30 @@
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+%>
+<div class="business-content-item">
+    <h2>预约历史</h2>
+    <div class="toolbar">
+        <input type="text" placeholder="搜索..." class="search-input">
+        <button class="btn btn-primary" onclick="loadAppointmentHistory()">刷新</button>
+    </div>
+    
+    <div id="appointment-history-container">
+        <!-- 预约历史列表将通过JS动态加�?-->
+    </div>
+</div>
+<link rel="stylesheet" href="<%=basePath%>business/css/appointment.css">
+<script src="<%=basePath%>business/scripts/appointment.js"></script>
+<script>
+function loadAppointmentHistory() {
+    fetch('../../../../servlet/patient/AppointmentServlet?action=history')
+        .then(response => response.json())
+        .then(appointments => {
+            renderAppointmentHistory(appointments);
+        })
+        .catch(error => {
+            console.error('加载预约历史失败:', error);
+        });
+}
+</script>

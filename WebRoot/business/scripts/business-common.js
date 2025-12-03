@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 业务模块通用JavaScript函数
  */
 
@@ -164,107 +164,117 @@ function loadBusinessContent(role, group, contentId) {
     // 内容ID到HTML文件名的映射
     const contentMapping = {
         // 管理员
-        'business-manage': 'business-manage.html',
-        'user-manage': 'user-manage.html',
+        'business-manage': 'business-manage.jsp',
+        'user-manage': 'user-manage.jsp',
         // 合作论坛
-        'forum-home': 'forum-home.html',
-        'publish-content': 'publish-content.html',
-        'my-posts': 'my-posts.html',
-        'feedback': 'feedback.html',
-        'replies': 'replies.html',
-        'activity-stats': 'activity-stats.html',
-        'interaction-stats': 'interaction-stats.html',
+        'forum-home': 'forum-home.jsp',
+        'publish-content': 'publish-content.jsp',
+        'my-posts': 'my-posts.jsp',
+        'feedback': 'feedback.jsp',
+        'replies': 'replies.jsp',
+        'activity-stats': 'activity-stats.jsp',
+        'interaction-stats': 'interaction-stats.jsp',
         // 医疗服务/护理服务
-        'daily-work': 'daily-work.html',
-        'daily-nursing': 'daily-nursing.html',
-        'patient-care': 'patient-care.html',
-        'schedule': 'schedule.html',
-        'nursing-schedule': 'nursing-schedule.html',
-        'statistics': 'statistics.html',
-        'nursing-stats': 'nursing-stats.html',
-        'patient-arrangement': 'patient-arrangement.html',
+        'daily-work': 'daily-work.jsp',
+        'daily-nursing': 'daily-nursing.jsp',
+        'patient-care': 'patient-care.jsp',
+        'schedule': 'schedule.jsp',
+        'nursing-schedule': 'nursing-schedule.jsp',
+        'statistics': 'statistics.jsp',
+        'nursing-stats': 'nursing-stats.jsp',
+        'patient-arrangement': 'patient-arrangement.jsp',
         // 电子病历
-        'view-records': 'view-records.html',
-        'add-record': 'add-record.html',
-        'edit-record': 'edit-record.html',
-        'record-settings': 'record-settings.html',
-        'record-assist': 'record-assist.html',
-        'record-query': 'record-query.html',
-        'view-record': 'view-record.html',
-        'download-record': 'download-record.html',
-        'share-record': 'share-record.html',
-        'record-help': 'record-help.html',
+        'view-records': 'view-records.jsp',
+        'add-record': 'add-record.jsp',
+        'edit-record': 'edit-record.jsp',
+        'record-settings': 'record-settings.jsp',
+        'record-assist': 'record-assist.jsp',
+        'record-query': 'record-query.jsp',
+        'view-record': 'view-record.jsp',
+        'download-record': 'download-record.jsp',
+        'share-record': 'share-record.jsp',
+        'record-help': 'record-help.jsp',
         // 远程医疗
-        'remote-diagnosis': 'remote-diagnosis.html',
-        'remote-consultation': 'remote-consultation.html',
-        'medical-advice': 'medical-advice.html',
-        'remote-history': 'remote-history.html',
-        'apply-diagnosis': 'apply-diagnosis.html',
-        'diagnosis-guide': 'diagnosis-guide.html',
-        'diagnosis-history': 'diagnosis-history.html',
-        'doctor-select': 'doctor-select.html',
+        'remote-diagnosis': 'remote-diagnosis.jsp',
+        'remote-consultation': 'remote-consultation.jsp',
+        'medical-advice': 'medical-advice.jsp',
+        'remote-history': 'remote-history.jsp',
+        'apply-diagnosis': 'apply-diagnosis.jsp',
+        'diagnosis-guide': 'diagnosis-guide.jsp',
+        'diagnosis-history': 'diagnosis-history.jsp',
+        'doctor-select': 'doctor-select.jsp',
         // 疾病管理
-        'epidemic-monitor': 'epidemic-monitor.html',
-        'epidemic-info': 'epidemic-info.html',
-        'disease-report': 'disease-report.html',
-        'reporting': 'reporting.html',
-        'statistics-analysis': 'statistics-analysis.html',
-        'prevention-guide': 'prevention-guide.html',
-        'data-collection': 'data-collection.html',
+        'epidemic-monitor': 'epidemic-monitor.jsp',
+        'epidemic-info': 'epidemic-info.jsp',
+        'disease-report': 'disease-report.jsp',
+        'reporting': 'reporting.jsp',
+        'statistics-analysis': 'statistics-analysis.jsp',
+        'prevention-guide': 'prevention-guide.jsp',
+        'data-collection': 'data-collection.jsp',
         // 资产与资源管理
-        'asset-list': 'asset-list.html',
-        'asset-allocation': 'asset-allocation.html',
-        'asset-maintenance': 'asset-maintenance.html',
-        'resource-usage': 'resource-usage.html',
+        'asset-list': 'asset-list.jsp',
+        'asset-allocation': 'asset-allocation.jsp',
+        'asset-maintenance': 'asset-maintenance.jsp',
+        'resource-usage': 'resource-usage.jsp',
         // 购药管理
-        'purchase-request': 'purchase-request.html',
-        'purchase-order': 'purchase-order.html',
-        'purchase-history': 'purchase-history.html',
-        'drug-inventory': 'drug-inventory.html',
+        'purchase-request': 'purchase-request.jsp',
+        'purchase-order': 'purchase-order.jsp',
+        'purchase-history': 'purchase-history.jsp',
+        'drug-inventory': 'drug-inventory.jsp',
         // 财务统计分析
-        'revenue-statistics': 'revenue-statistics.html',
-        'expense-statistics': 'expense-statistics.html',
-        'financial-report': 'financial-report.html',
-        'budget-analysis': 'budget-analysis.html',
+        'revenue-statistics': 'revenue-statistics.jsp',
+        'expense-statistics': 'expense-statistics.jsp',
+        'financial-report': 'financial-report.jsp',
+        'budget-analysis': 'budget-analysis.jsp',
         // 预约与挂号
-        'new-appointment': 'new-appointment.html',
-        'new-registration': 'new-registration.html',
-        'history-appointment': 'history-appointment.html',
-        'history-registration': 'history-registration.html',
-        'cancel-appointment': 'cancel-appointment.html',
-        'cancel-registration': 'cancel-registration.html',
+        'new-appointment': 'new-appointment.jsp',
+        'new-registration': 'new-registration.jsp',
+        'history-appointment': 'history-appointment.jsp',
+        'history-registration': 'history-registration.jsp',
+        'cancel-appointment': 'cancel-appointment.jsp',
+        'cancel-registration': 'cancel-registration.jsp',
         // 医疗资讯
-        'health-news': 'health-news.html',
-        'hospital-info': 'hospital-info.html',
-        'medical-knowledge': 'medical-knowledge.html',
-        'disease-prevent': 'disease-prevent.html'
+        'health-news': 'health-news.jsp',
+        'hospital-info': 'hospital-info.jsp',
+        'medical-knowledge': 'medical-knowledge.jsp',
+        'disease-prevent': 'disease-prevent.jsp'
     };
     
     // 获取业务名称
     const businessName = groupMapping[group] || group;
-    const fileName = contentMapping[contentId] || contentId + '.html';
+    const fileName = contentMapping[contentId] || contentId + '.jsp';
     
-    // 构建路径
-    let basePath = '../../business/html/';
-    if (role === 'admin') {
-        basePath += 'admin/';
-    } else if (role === 'enterprise') {
-        basePath += 'enterprise/';
-    } else if (role === 'university') {
-        basePath += 'university/';
-    } else if (role === 'patient') {
-        basePath += 'patient/';
-    } else if (role === 'doctor') {
-        basePath += 'hospital/doctor/';
-    } else if (role === 'nurse') {
-        basePath += 'nurse/';
-    } else if (role === 'executive') {
-        basePath += 'executive/';
-    } else if (role === 'finance') {
-        basePath += 'hospital/finance/';
+    // 构建路径 - 使用绝对路径（从项目根目录开始）
+    // 获取当前页面的context path
+    const currentPath = window.location.pathname;
+    const pathParts = currentPath.split('/').filter(p => p);
+    let contextPath = '/';
+    if (pathParts.length > 0) {
+        // 假设第一个部分是项目名（如 E-HSS）
+        contextPath = '/' + pathParts[0] + '/';
     }
     
-    const htmlPath = basePath + businessName + '/' + fileName;
+    // 构建业务HTML文件的绝对路径
+    let relativePath = 'business/html/';
+    if (role === 'admin') {
+        relativePath += 'admin/';
+    } else if (role === 'enterprise') {
+        relativePath += 'enterprise/';
+    } else if (role === 'university') {
+        relativePath += 'university/';
+    } else if (role === 'patient') {
+        relativePath += 'patient/';
+    } else if (role === 'doctor') {
+        relativePath += 'hospital/doctor/';
+    } else if (role === 'nurse') {
+        relativePath += 'nurse/';
+    } else if (role === 'executive') {
+        relativePath += 'executive/';
+    } else if (role === 'finance') {
+        relativePath += 'hospital/finance/';
+    }
+    
+    const htmlPath = contextPath + relativePath + businessName + '/' + fileName;
     
     // 加载HTML片段
     fetch(htmlPath)
@@ -295,7 +305,7 @@ function loadBusinessContent(role, group, contentId) {
                 const currentPath = window.location.pathname;
                 
                 // 提取项目上下文路径（例如: /E-HSS/）
-                // 当前页面路径可能是: /E-HSS/home/hospital/nurse-home.html
+                // 当前页面路径可能是: /E-HSS/home/hospital/nurse-home.jsp
                 const pathParts = currentPath.split('/').filter(p => p);
                 let contextPath = '/';
                 if (pathParts.length > 0) {
@@ -304,7 +314,7 @@ function loadBusinessContent(role, group, contentId) {
                 }
                 
                 // 手动解析相对路径，避免URL API的路径重复问题
-                // HTML文件在: business/html/nurse/nursing-service/daily-nursing.html
+                // JSP文件在: business/html/nurse/nursing-service/daily-nursing.jsp
                 // 相对路径 ../../../business/scripts/nursing-service.js
                 // 从 business/html/nurse/nursing-service/ 向上3级到项目根，然后加上 business/scripts/nursing-service.js
                 // 结果: /E-HSS/business/scripts/nursing-service.js

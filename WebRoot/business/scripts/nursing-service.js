@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 护务管理业务脚本
  * 版本: 2025-01-20 - 使用下拉选择框更新状态
  */
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// 由于HTML是动态加载的，也需要监听动态内容加载
+// 由于JSP是动态加载的，也需要监听动态内容加载
 // 使用MutationObserver监听task-list-body的创建
 const observer = new MutationObserver(function(mutations) {
     const taskListBody = document.getElementById('task-list-body');
@@ -72,8 +72,7 @@ function initNursingService() {
 
 // 从后端Servlet获取数据
 function fetchTasksFromDB() {
-    // 由于HTML是通过loadBusinessContent动态加载到nurse-home.html中的
-    // nurse-home.html在 home/hospital/ 目录下，所以使用相对路径 ../../servlet/...
+    // nurse-home.jsp在 home/hospital/ 目录下，所以使用相对路径 ../../servlet/...
     // 如果动态路径计算失败，尝试使用相对路径
     let apiUrl;
     try {
@@ -84,7 +83,7 @@ function fetchTasksFromDB() {
             const basePath = path.substring(0, homeIndex);
             apiUrl = basePath + '/servlet/hospital/nurse/MedicalServiceServlet_Nurse?action=list';
         } else {
-            // 使用相对路径（从nurse-home.html的位置：home/hospital/ -> ../../servlet/）
+            // 使用相对路径（从nurse-home.jsp的位置：home/hospital/ -> ../../servlet/）
             apiUrl = '../../servlet/hospital/nurse/MedicalServiceServlet_Nurse?action=list';
         }
     } catch (e) {

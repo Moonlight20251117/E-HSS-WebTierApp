@@ -1,0 +1,288 @@
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+%>
+<div class="business-content-item">
+    <h2>新建预约</h2>
+    
+    <!-- 步骤指示器 -->
+    <div class="steps-bar">
+        <div class="step active" id="step1-indicator">1</div>
+        <div class="step" id="step2-indicator">2</div>
+        <div class="step" id="step3-indicator">3</div>
+    </div>
+    
+    <!-- 步骤1：选择科室&时间 -->
+    <div class="step-content active" id="step1-content">
+        <h3>选择科室&时间</h3>
+        <div class="department-list">
+            <div class="department-card">
+                <div class="department-name">内科</div>
+                <p>擅长：呼吸系统、消化系统等内科疾病诊疗</p>
+                <div class="doctor-list">
+                    <div class="doctor-item">
+                        <div class="doctor-name">张医生 - 主任医师</div>
+                        <div class="time-slots">
+                            <span class="time-slot" data-time="今天 09:00" data-doctor="张医生" data-department="内科">今天 09:00</span>
+                            <span class="time-slot" data-time="今天 10:30" data-doctor="张医生" data-department="内科">今天 10:30</span>
+                            <span class="time-slot" data-time="明天 09:00" data-doctor="张医生" data-department="内科">明天 09:00</span>
+                        </div>
+                    </div>
+                    <div class="doctor-item">
+                        <div class="doctor-name">李医生 - 副主任医师</div>
+                        <div class="time-slots">
+                            <span class="time-slot" data-time="今天 14:00" data-doctor="李医生" data-department="内科">今天 14:00</span>
+                            <span class="time-slot" data-time="今天 15:30" data-doctor="李医生" data-department="内科">今天 15:30</span>
+                            <span class="time-slot" data-time="明天 14:00" data-doctor="李医生" data-department="内科">明天 14:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="department-card">
+                <div class="department-name">外科</div>
+                <p>擅长：普外科、骨科、泌尿外科等外科疾病诊疗</p>
+                <div class="doctor-list">
+                    <div class="doctor-item">
+                        <div class="doctor-name">王医生 - 主任医师</div>
+                        <div class="time-slots">
+                            <span class="time-slot" data-time="今天 09:30" data-doctor="王医生" data-department="外科">今天 09:30</span>
+                            <span class="time-slot" data-time="今天 11:00" data-doctor="王医生" data-department="外科">今天 11:00</span>
+                            <span class="time-slot" data-time="明天 09:30" data-doctor="王医生" data-department="外科">明天 09:30</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="department-card">
+                <div class="department-name">儿科</div>
+                <p>擅长：儿童常见病、多发病的诊疗</p>
+                <div class="doctor-list">
+                    <div class="doctor-item">
+                        <div class="doctor-name">赵医生 - 主任医师</div>
+                        <div class="time-slots">
+                            <span class="time-slot" data-time="今天 08:30" data-doctor="赵医生" data-department="儿科">今天 08:30</span>
+                            <span class="time-slot" data-time="今天 10:00" data-doctor="赵医生" data-department="儿科">今天 10:00</span>
+                            <span class="time-slot" data-time="明天 08:30" data-doctor="赵医生" data-department="儿科">明天 08:30</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="department-card">
+                <div class="department-name">妇科</div>
+                <p>擅长：妇科常见病、多发病的诊疗</p>
+                <div class="doctor-list">
+                    <div class="doctor-item">
+                        <div class="doctor-name">刘医生 - 主任医师</div>
+                        <div class="time-slots">
+                            <span class="time-slot" data-time="今天 09:00" data-doctor="刘医生" data-department="妇科">今天 09:00</span>
+                            <span class="time-slot" data-time="今天 14:30" data-doctor="刘医生" data-department="妇科">今天 14:30</span>
+                            <span class="time-slot" data-time="明天 09:00" data-doctor="刘医生" data-department="妇科">明天 09:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="action-buttons">
+            <button class="btn btn-primary" id="step1-next">下一步</button>
+        </div>
+    </div>
+    
+    <!-- 步骤2：查看并确认预约信息 -->
+    <div class="step-content" id="step2-content">
+        <h3>查看并确认预约信息</h3>
+        <div class="appointment-confirm">
+            <div class="confirm-section">
+                <h4>患者基本信息</h4>
+                <div class="confirm-item">
+                    <span class="confirm-label">患者姓名：</span>
+                    <span id="confirm-patient-name">患者用户</span>
+                </div>
+                <div class="confirm-item">
+                    <span class="confirm-label">联系电话：</span>
+                    <span id="confirm-phone">138****8888</span>
+                </div>
+            </div>
+            <div class="confirm-section">
+                <h4>预约信息</h4>
+                <div class="confirm-item">
+                    <span class="confirm-label">科室：</span>
+                    <span id="confirm-department">-</span>
+                </div>
+                <div class="confirm-item">
+                    <span class="confirm-label">医生：</span>
+                    <span id="confirm-doctor">-</span>
+                </div>
+                <div class="confirm-item">
+                    <span class="confirm-label">预约时间：</span>
+                    <span id="confirm-time">-</span>
+                </div>
+            </div>
+        </div>
+        <div class="action-buttons">
+            <button type="button" class="btn btn-secondary" id="step2-prev">上一步</button>
+            <button type="button" class="btn btn-primary" id="step2-next">确认预约</button>
+        </div>
+    </div>
+    
+    <!-- 步骤3：完成预约 -->
+    <div class="step-content" id="step3-content">
+        <h3>完成预约</h3>
+        <div class="appointment-success">
+            <div class="success-icon">✓</div>
+            <p class="success-message">预约成功！</p>
+            <div class="appointment-details">
+                <div class="detail-item">
+                    <span class="detail-label">预约时间：</span>
+                    <span id="success-time">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">科室：</span>
+                    <span id="success-department">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">医生：</span>
+                    <span id="success-doctor">-</span>
+                </div>
+            </div>
+            <div class="success-tip">
+                <p>请您提前10-15分钟到医院自助取号</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="<%=basePath%>business/css/appointment.css">
+<script>
+(function() {
+    // 存储选择的预约信息 - 改为数组，支持多个预约
+    let selectedAppointments = [];
+    
+    // 步骤1：选择时间
+    document.querySelectorAll('.time-slot').forEach(slot => {
+        slot.addEventListener('click', function() {
+            const department = this.getAttribute('data-department');
+            const doctor = this.getAttribute('data-doctor');
+            const time = this.getAttribute('data-time');
+            
+            // 检查该时间段是否已被选中
+            const isSelected = this.classList.contains('selected');
+            
+            if (isSelected) {
+                // 如果已选中，则取消选择
+                this.classList.remove('selected');
+                // 从数组中移除
+                selectedAppointments = selectedAppointments.filter(apt => 
+                    !(apt.department === department && apt.doctor === doctor && apt.time === time)
+                );
+            } else {
+                // 检查同一诊室是否已有其他时间段被选中
+                const sameDepartmentAppointment = selectedAppointments.find(apt => 
+                    apt.department === department && apt.doctor === doctor
+                );
+                
+                if (sameDepartmentAppointment) {
+                    // 同一诊室已有时间段被选中，给出提醒
+                    alert('同一诊室一次性只可以预约一个时间段');
+                    return;
+                }
+                
+                // 添加选中状态
+                this.classList.add('selected');
+                // 保存选择的信息
+                selectedAppointments.push({
+                    department: department,
+                    doctor: doctor,
+                    time: time
+                });
+            }
+        });
+    });
+    
+    // 步骤1：下一步按钮
+    const step1Next = document.getElementById('step1-next');
+    if (step1Next) {
+        step1Next.addEventListener('click', function() {
+            if (selectedAppointments.length === 0) {
+                alert('请先选择预约时间');
+                return;
+            }
+            // 更新步骤2的确认信息 - 显示第一个预约信息（或可以显示所有）
+            const firstAppointment = selectedAppointments[0];
+            document.getElementById('confirm-department').textContent = firstAppointment.department;
+            document.getElementById('confirm-doctor').textContent = firstAppointment.doctor;
+            document.getElementById('confirm-time').textContent = firstAppointment.time;
+            // 如果有多个预约，可以在这里显示提示
+            if (selectedAppointments.length > 1) {
+                // 可以扩展显示多个预约信息
+                document.getElementById('confirm-time').textContent = 
+                    firstAppointment.time + ' 等' + selectedAppointments.length + '个时间段';
+            }
+            // 切换到步骤2
+            goToStep(2);
+        });
+    }
+    
+    // 步骤2：上一步按钮
+    const step2Prev = document.getElementById('step2-prev');
+    if (step2Prev) {
+        step2Prev.addEventListener('click', function() {
+            goToStep(1);
+        });
+    }
+    
+    // 步骤2：确认预约按钮
+    const step2Next = document.getElementById('step2-next');
+    if (step2Next) {
+        step2Next.addEventListener('click', function() {
+            // 更新步骤3的成功信息 - 显示第一个预约信息
+            const firstAppointment = selectedAppointments[0];
+            document.getElementById('success-department').textContent = firstAppointment.department;
+            document.getElementById('success-doctor').textContent = firstAppointment.doctor;
+            document.getElementById('success-time').textContent = firstAppointment.time;
+            // 如果有多个预约，显示提示
+            if (selectedAppointments.length > 1) {
+                document.getElementById('success-time').textContent = 
+                    firstAppointment.time + ' 等' + selectedAppointments.length + '个时间段';
+            }
+            // 切换到步骤3
+            goToStep(3);
+        });
+    }
+    
+    // 切换步骤函数
+    function goToStep(step) {
+        // 隐藏所有步骤内容
+        document.querySelectorAll('.step-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        // 重置所有步骤指示器
+        document.querySelectorAll('.step').forEach(stepEl => {
+            stepEl.classList.remove('active', 'completed');
+        });
+        
+        // 显示当前步骤
+        const currentContent = document.getElementById('step' + step + '-content');
+        if (currentContent) {
+            currentContent.classList.add('active');
+        }
+        
+        // 更新步骤指示器
+        for (let i = 1; i <= step; i++) {
+            const indicator = document.getElementById('step' + i + '-indicator');
+            if (indicator) {
+                if (i < step) {
+                    indicator.classList.add('completed');
+                } else {
+                    indicator.classList.add('active');
+                }
+            }
+        }
+    }
+    
+    // 初始化：确保步骤1显示
+    goToStep(1);
+})();
+</script>

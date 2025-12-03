@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` VARCHAR(100) NOT NULL COMMENT '密码（加密存储）',
   `id_card` VARCHAR(18) NOT NULL COMMENT '身份证号',
   `real_name` VARCHAR(50) NOT NULL COMMENT '真实姓名',
-  `gender` CHAR(1) COMMENT '性别（男/女/未知）',
+  `gender` CHAR(2) COMMENT '性别（男/女/未知）',
   `phone` VARCHAR(20) NOT NULL COMMENT '手机号码',
   `role_id` VARCHAR(32) NOT NULL COMMENT '关联角色ID',
   `status` TINYINT(1) NOT NULL DEFAULT 1 COMMENT '状态（1-正常/0-禁用）',
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `user_id` VARCHAR(32) NOT NULL COMMENT '所属用户ID（外键，关联user表）',
   `real_name` VARCHAR(50) NOT NULL COMMENT '就诊人姓名',
   `id_card` VARCHAR(18) NOT NULL COMMENT '就诊人身份证号',
-  `gender` CHAR(1) COMMENT '性别（男/女/未知）',
+  `gender` CHAR(2) COMMENT '性别（男/女/未知）',
   `phone` VARCHAR(20) NOT NULL COMMENT '就诊人电话',
   `relationship` VARCHAR(20) NOT NULL COMMENT '与用户的关系（本人/父母/子女/其他）',
   `medical_card` VARCHAR(50) COMMENT '医保卡号',
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `department` (
 CREATE TABLE IF NOT EXISTS`doctor`  (
   `doctor_id` varchar(32) NOT NULL COMMENT '医生唯一标识（主键）',
   `doctor_name` varchar(12) NOT NULL COMMENT '医生姓名',
-  `gender` varchar(12) NOT NULL COMMENT '医生性别',
+  `gender` CHAR(2) NOT NULL COMMENT '医生性别（男/女/未知）',
   `user_id` varchar(32) NOT NULL COMMENT '关联用户ID（外键，关联user表）',
   `dept_id` varchar(32) NOT NULL COMMENT '所属科室ID（外键，关联department表）',
   `title` varchar(30) NOT NULL COMMENT '职称（主任医师/副主任医师/主治医师等）',
@@ -701,7 +701,8 @@ INSERT INTO `role` (`role_id`, `role_name`, `role_desc`) VALUES
 ('ROLE_PATIENT', '患者', '负责预约挂号、查看电子病历、远程医疗申请等'),
 ('ROLE_ENTERPRISE', '企业用户', '负责合作论坛发布、互动等'),
 ('ROLE_UNIVERSITY', '高校用户', '负责合作论坛发布、互动等'),
-('ROLE_FINANCE', '财务人员', '负责资产与资源管理、购药管理、财务统计分析等');
+('ROLE_FINANCE', '财务人员', '负责资产与资源管理、购药管理、财务统计分析等'),
+('ROLE_EXECUTIVE', '医院高管', '负责医院整体管理、决策等');
 
 -- 2. 用户表
 INSERT INTO `user` (`user_id`, `username`, `password`, `id_card`, `real_name`, `gender`, `phone`, `role_id`, `status`) VALUES

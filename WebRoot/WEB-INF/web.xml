@@ -25,6 +25,19 @@
     <description>This is the description of my J2EE component</description>
     <servlet-class>org.web.servlet.unniversity.CooperationForumServlet_unniversity</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>CloudServiceEngineering</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>org.cloudserviceengineering.app.CloudServiceEngineering</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserManageService_Tool</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>org.cloudserviceengineering.app.UserManageService_Tool</servlet-class>
+  </servlet>
+
   
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
@@ -41,6 +54,14 @@
   <servlet-mapping>
     <servlet-name>CooperationForumServlet_unniversity</servlet-name>
     <url-pattern>/servlet/CooperationForumServlet_unniversity</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CloudServiceEngineering</servlet-name>
+    <url-pattern>/servlet/CloudServiceEngineering</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserManageService_Tool</servlet-name>
+    <url-pattern>/servlet/UserManageService_Tool</url-pattern>
   </servlet-mapping>
 
   <!-- 欢迎页面配置 -->
